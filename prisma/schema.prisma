@@ -23,7 +23,7 @@ model Worker {
 model AddressWorker {
   id       Int    @id @default(autoincrement())
   city     String
-  zipCode  String
+  postCode String
   street   String
   worker   Worker @relation(fields: [workerId], references: [id])
   workerId Int
