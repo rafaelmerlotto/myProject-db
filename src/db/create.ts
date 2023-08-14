@@ -9,21 +9,21 @@ async function mainCreate() {
     try {
         const worker = await prisma.worker.create({
             data: {
-                firstName: 'Oliver',
-                lastName: 'Gas',
-                birthDate: '15/10/1980',
-                email: 'oliver.gas@gmail.com',
+                firstName: 'Domenic',
+                lastName: 'Croff',
+                birthDate: '10/03/1976',
+                email: 'domenic.croff@gmail.com',
                 addressWorker: {
                     create: {
-                        city: 'london',
-                        postCode: '9721',
-                        street: 'Saint marth',
+                        city: 'Manchester',
+                        postCode: '9891',
+                        street: 'main street',
                     },
                 },
                 profile: {
                     create: {
-                        role: 'Operator security',
-                        annualSalary: 30000,
+                        role: 'macchine operator',
+                        annualSalary: 26000,
                     }
                 }
             },

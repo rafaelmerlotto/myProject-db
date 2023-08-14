@@ -15,7 +15,7 @@ model Worker {
   firstName     String
   lastName      String
   birthDate     String
-  email         String          @unique
+  email         String         
   addressWorker AddressWorker[]
   profile       Profile[]
 }
