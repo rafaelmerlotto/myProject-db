@@ -6,6 +6,6 @@ Use of Prisma server-side library for database access.
 
 In the project directory, you can run:
 
-### `ts-node src/API/crud.ts`
+#### `ts-node src/API/crud.ts`
 
-The app is running on [http://localhost:4000]
+The app is running on [http://localhost:4000](http://localhost:4000)
