@@ -15,25 +15,21 @@ model Worker {
   firstName     String
   lastName      String
   birthDate     String
-  email         String         
+  email         String  @unique
+  role          String
+  annualSalary  String
   addressWorker AddressWorker[]
-  profile       Profile[]
+
+
 }
 
 model AddressWorker {
-  id       Int    @id @default(autoincrement())
+  id       Int       @id @default(autoincrement())
   city     String
   postCode String
   street   String
-  worker   Worker @relation(fields: [workerId], references: [id])
+  worker   Worker    @relation(fields: [workerId], references: [id], onDelete: Cascade)
   workerId Int
-}
 
-model Profile {
-  id           Int     @id @default(autoincrement())
-  avatar       String?
-  role         String
-  annualSalary Int
-  worker       Worker  @relation(fields: [workerId], references: [id])
-  workerId     Int
+  @@unique([id, workerId])
 }
