@@ -1,6 +1,6 @@
 # DB project
 
-this is a program developed in node.js and use framework Express.js for creating web-API.
+this is a program developed in node.js and use framework Express.js to create web-API.
 
 Use of Prisma server-side library for database access.
 
