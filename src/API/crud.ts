@@ -8,18 +8,18 @@ const prisma = new PrismaClient();
 // GET LIST
 app.get('/', async (req, res) => {
     try {
-        const workersList = await prisma.worker.findMany({
+        const workerList = await prisma.worker.findMany({
             include: {
                 addressWorker: true,
             }
         });
-        if (!workersList) {
+        if (!workerList) {
             return res.status(404).send({ msg: 'List not found' })
         }
-         return res.status(200).send(workersList)
-    } catch{
+        return res.status(200).send(workerList)
+    } catch {
         return res.status(500).send({ msg: 'Error' })
-    } 
+    }
 })
 
 
@@ -32,26 +32,25 @@ app.get('/worker/:id', async (req, res) => {
             where: {
                 id: id,
             },
-            include:{
-                addressWorker:true
+            include: {
+                addressWorker: true
             }
 
         });
-        if(!worker){
-            return res.status(404).send({msg: 'Worker not found'})
+        if (!worker) {
+            return res.status(404).send({ msg: 'Worker not found' })
         }
         return res.status(200).send(worker)
-    } catch{
-        return res.status(500).send({msg: 'Error'})
+    } catch {
+        return res.status(500).send({ msg: 'Error' })
     }
-   
 })
 
 
 // CREATE
 app.post('/worker/', async (req, res) => {
     const body = req.body;
-   
+
     try {
         const worker = await prisma.worker.create({
             data: {
@@ -70,9 +69,9 @@ app.post('/worker/', async (req, res) => {
                 },
             },
         });
-         return res.status(201).send(worker)
+        return res.status(201).send(worker)
     } catch {
-        return res.status(500).send({ msg: 'Cannot create worker' })
+        return res.status(500).send({ msg: 'Worker already created' })
     };
 });
 
@@ -104,12 +103,12 @@ app.put('/worker/:id', async (req, res) => {
                 email: body.email,
                 role: body.role,
                 annualSalary: body.annualSalary,
-                
+
             },
         })
         return res.status(200).send(editWorker)
     } catch {
-        return res.status(304).send({ msg: 'Cannot edit worker' })
+        return res.status(403).send({ msg: 'Cannot edit worker' })
     };
 })
 
@@ -122,10 +121,10 @@ app.put('/addressworker/:id', async (req, res) => {
     try {
         const editAddressWorker = await prisma.addressWorker.update({
             where: {
-              id_workerId:{
-                id: id,
-                workerId: id
-              }
+                id_workerId: {
+                    id: id,
+                    workerId: id
+                }
             },
             data: {
                 city: body.city,
@@ -135,7 +134,7 @@ app.put('/addressworker/:id', async (req, res) => {
         })
         return res.status(200).send(editAddressWorker)
     } catch {
-        return res.status(304).send({ msg: 'Cannot edit worker' })
+        return res.status(403).send({ msg: 'Cannot edit worker' })
     };
 })
 
@@ -152,7 +151,7 @@ app.delete('/worker/:id', async (req, res) => {
             },
             include: {
                 addressWorker: {
-                    where:{
+                    where: {
                         workerId: id
                     }
                 }
@@ -169,3 +168,4 @@ const port = 4000;
 app.listen(port, () => {
     console.log(`app is running on http://localhost:${port}`)
 })
+
